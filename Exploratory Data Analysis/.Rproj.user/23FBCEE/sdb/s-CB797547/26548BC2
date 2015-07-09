@@ -1,0 +1,18 @@
+{
+    "contents" : "library(data.table)\ndata <- read.table(file = \"household_power_consumption.txt\" ,nrow = 5 , sep = \";\" , header = T)\ndata <- read.table(file = \"household_power_consumption.txt\" , sep = \";\" ,\n                   header = T , col.names = colnames(data) )\ndata <- as.data.table(data)\ndata[ ,Date := as.Date(as.character(Date) , format = \"%d/%m/%Y\")]\ndata <- data[Date >= as.Date(\"2007-02-01\")& Date<= as.Date(\"2007-03-01\") ]\n\nView(data[1:1000])\n",
+    "created" : 1436179008138.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "599028440",
+    "id" : "26548BC2",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
