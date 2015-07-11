@@ -1,0 +1,17 @@
+{
+    "contents" : "data <- read.table(file = \"household_power_consumption.txt\" ,nrow = 5 , sep = \";\" , header = T)\ndata <- read.table(file = \"household_power_consumption.txt\" , sep = \";\" ,\n                   header = T , col.names = colnames(data) )\n\ndata$Date <- as.Date(as.character(data$Date) , format = \"%d/%m/%Y\")\ndata <- data[(1:nrow(data))[ data$Date == as.Date(\"2007-02-01\") |\n                                   data$Date == as.Date(\"2007-02-02\")] , ]\ndata$datetime <- as.POSIXct(paste(data$Date, data$Time, sep = \"-\"), format = \"%Y-%m-%d-%X\")\n\n## Creat plot4.png\n\npng(filename = \"_Project01/plot4.png\" , width = 480 , height = 480)\npar(mfrow = c(2,2))\ndata$Global_active_power <- as.numeric(as.character(data$Global_active_power) )\ndata$Global_reactive_power <- as.numeric(as.character(data$Global_reactive_power) )\ndata$Voltage <- as.numeric(as.character(data$Voltage))\n\nwith(data = data, plot(datetime, Global_active_power, type = \"n\", lwd = 0.5, ylab = \"Global Active Power (killowatts)\", xlab = \"\"))\nlines(x = data$datetime, y = data$Global_active_power, type = \"l\", lwd = 0.5)\n\nwith(data = data, plot(datetime, Voltage, type = \"n\", ylab = \"Voltage\", lwd = 0.5))\nlines(x = data$datetime, y = data$Voltage, type = \"l\", lwd = 0.5)\n\nwith(data = data, plot(datetime, as.numeric(as.character(Sub_metering_1)), type = \"n\",\n                       ylab = \"Energy sub metering\", xlab = \"\", lwd = 0.5))\nwith(data , lines(datetime, as.numeric(as.character(Sub_metering_1)), type = \"l\" , col = \"black\", lwd = 0.5))\nwith(data , lines(datetime, as.numeric(as.character(Sub_metering_2)), type = \"l\" , col = \"red\", lwd = 0.5))\nwith(data , lines(datetime, as.numeric(as.character(Sub_metering_3)), type = \"l\" , col = \"blue\", lwd = 0.5))\nlegend(\"topright\", pch = \"--\",bty = \"n\", col = c(\"black\", \"red\", \"blue\"),\n       legend = c(\"Sub_metering_1\", \"Sub_metering_2\", \"Sub_metering_3\"))\n\nwith(data = data, plot(datetime, Global_reactive_power, type = \"n\", xlab = \"\",\n                       lwd = 0.5))\nlines(x = data$datetime, y = data$Global_reactive_power, type = \"l\", lwd = 0.5)\n\ndev.off()\n\n",
+    "created" : 1436644732277.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1915515390",
+    "id" : "9D2C1010",
+    "lastKnownWriteTime" : 1436644949,
+    "path" : "D:/OneDrive/R/My Courses/Online_Courses/The Data Science Specialization/datasciencecoursera/Exploratory Data Analysis/_Project01/plot4.R",
+    "project_path" : "_Project01/plot4.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

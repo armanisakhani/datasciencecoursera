@@ -1,0 +1,17 @@
+{
+    "contents" : "data <- read.table(file = \"household_power_consumption.txt\" ,nrow = 5 , sep = \";\" , header = T)\ndata <- read.table(file = \"household_power_consumption.txt\" , sep = \";\" ,\n                   header = T , col.names = colnames(data) )\n\ndata$Date <- as.Date(as.character(data$Date) , format = \"%d/%m/%Y\")\ndata <- data[(1:nrow(data))[ data$Date == as.Date(\"2007-02-01\") |\n                                   data$Date == as.Date(\"2007-02-02\")] , ]\ndata$datetime <- as.POSIXct(paste(data$Date, data$Time, sep = \"-\"), format = \"%Y-%m-%d-%X\")\n\n## Creat plot1.png\ndata$Global_active_power <- as.numeric(as.character(data$Global_active_power) )\npng(filename = \"_Project01/plot1.png\" , width = 480 , height = 480)\nhist(x = as.numeric(as.character(data$Global_active_power) ) , main = \"Global Active Power\" , xlab = \"Global Active Power (killowatts)\" , col = \"red\")\ndev.off()\n\n\n",
+    "created" : 1436644723457.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "985838614",
+    "id" : "E5C71BBC",
+    "lastKnownWriteTime" : 1436644958,
+    "path" : "D:/OneDrive/R/My Courses/Online_Courses/The Data Science Specialization/datasciencecoursera/Exploratory Data Analysis/_Project01/plot1.R",
+    "project_path" : "_Project01/plot1.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
